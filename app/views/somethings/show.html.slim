@@ -1,0 +1,18 @@
+.page-header
+  h1 Something
+
+dl
+  dt Name
+  dd= @something.name
+  dt Size
+  dd= @something.size
+
+/- if can?(:edit, @something)
+= link_to text_with_icon('Edit', 'edit'), edit_something_path(@something), class: 'btn btn-default'
+'
+= link_to text_with_icon('Back', 'chevron-left'), somethings_path, class: 'btn btn-default'
+
+/- if can?(:destroy, @something)
+'
+= link_to text_with_icon('Destroy', 'remove'), something_path(@something), \
+          method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger'

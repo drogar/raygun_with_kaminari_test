@@ -1,0 +1,32 @@
+div.page-header
+  h1 Listing somethings
+
+= paginate @somethings
+
+table.table.table-striped
+  thead
+    tr
+      th ID
+      th Name
+      th Size
+      th Actions
+
+  tbody
+  - @somethings.each do |something|
+    tr
+      /td= link_to_if can?(:show, something), something.id, something_path(something)
+      td= link_to something.id, something_path(something)
+      td= something.name
+      td= something.size
+      td
+        /- if can? :edit, something
+        = link_to text_with_icon('Edit', 'edit'), edit_something_path(something), class: 'btn btn-default btn-xs'
+        '
+        /- if can? :destroy, something
+        = link_to text_with_icon('Destroy', 'remove'), something_path(something), \
+                  method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default btn-xs btn-danger'
+                  
+= paginate @somethings
+br
+/- if can? :create, Something
+= link_to text_with_icon('New Something', 'plus'), new_something_path, class: 'btn btn-primary'

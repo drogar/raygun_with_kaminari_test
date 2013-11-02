@@ -1,0 +1,11 @@
+= simple_form_for(@something) do |f|
+  = f.error_notification
+
+  = f.input :name, autofocus: true
+  = f.input :size
+
+  = button_tag(type: 'submit', class: 'btn btn-primary') do
+    = text_with_icon("#{btn_action_prefix} Something", action_icon_name)
+  '
+  = link_to text_with_icon('Back', 'chevron-left'), somethings_path, class: 'btn btn-default'
+
